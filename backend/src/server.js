@@ -1,15 +1,17 @@
 const express = require("express");
 const cors = require("cors");
-const User = require("../models/User");
 require("dotenv").config();
 
 const sequelize = require("../config/database");
+const User = require("../models/User");
+const userRoutes = require("../routes/userRoutes");
 
 const app = express();
 
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use("/api/users", userRoutes);
 
 // Root API
 app.get("/", (req, res) => {
@@ -27,6 +29,10 @@ const startServer = async () => {
         await sequelize.authenticate();
 
         console.log("PostgreSQL database connected successfully.");
+
+        await sequelize.sync();
+
+        console.log("Database tables synchronized successfully.");
 
         app.listen(PORT, () => {
             console.log(`BORSHA API server running on port ${PORT}`);
