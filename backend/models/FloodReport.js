@@ -5,7 +5,7 @@ const FloodReport = sequelize.define(
     "FloodReport",
     {
         // ===============================
-        // Report ID
+        // Primary Key
         // ===============================
         id: {
             type: DataTypes.INTEGER,
@@ -30,7 +30,25 @@ const FloodReport = sequelize.define(
         },
 
         // ===============================
-        // Flood Description
+        // GPS Latitude
+        // Example: 23.8103
+        // ===============================
+        latitude: {
+            type: DataTypes.DOUBLE,
+            allowNull: true,
+        },
+
+        // ===============================
+        // GPS Longitude
+        // Example: 90.4125
+        // ===============================
+        longitude: {
+            type: DataTypes.DOUBLE,
+            allowNull: true,
+        },
+
+        // ===============================
+        // Description
         // ===============================
         description: {
             type: DataTypes.TEXT,
@@ -38,7 +56,7 @@ const FloodReport = sequelize.define(
         },
 
         // ===============================
-        // Water Depth in Meters
+        // Water Depth
         // ===============================
         water_depth: {
             type: DataTypes.FLOAT,
